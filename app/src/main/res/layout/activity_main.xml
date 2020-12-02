@@ -1,188 +1,191 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="16dp"
-    tools:context=".MainActivity">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <ImageView
-        android:id="@+id/icon_person"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:importantForAccessibility="no"
-        app:layout_constraintBottom_toBottomOf="@id/choose_your_player"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/choose_your_player"
-        tools:srcCompat="@drawable/ic_person" />
-
-    <TextView
-        android:id="@+id/choose_your_player"
-        style="@style/Widget.TicTacToe.TextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:text="@string/choose_your_player"
-        app:layout_constraintStart_toEndOf="@id/icon_person"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <RadioGroup
-        android:id="@+id/player_options"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:checkedButton="@id/player_1"
-        android:orientation="vertical"
-        app:layout_constraintStart_toStartOf="@id/choose_your_player"
-        app:layout_constraintTop_toBottomOf="@id/choose_your_player">
-
-        <RadioButton
-            android:id="@+id/player_1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/player_1" />
-
-        <RadioButton
-            android:id="@+id/player_2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/player_2" />
-    </RadioGroup>
-
-
-    <androidx.constraintlayout.widget.Group
-        android:id="@+id/play_board"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
-        app:constraint_referenced_ids="board_place_0_0, board_place_0_1, board_place_0_2,board_place_1_0, board_place_1_1, board_place_1_2, board_place_2_0, board_place_2_1, board_place_2_2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/player_options" />
+        android:layout_height="match_parent"
+        android:padding="16dp"
+        tools:context=".MainActivity">
 
-    <ImageButton
-        android:id="@+id/board_place_0_0"
-        style="@style/Widget.TicTacToe.BoardImageView"
-        android:onClick="play"
-        app:layout_constraintEnd_toStartOf="@+id/board_place_0_1"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/play_board"
-        tools:srcCompat="@drawable/o" />
+        <ImageView
+            android:id="@+id/icon_person"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:importantForAccessibility="no"
+            app:layout_constraintBottom_toBottomOf="@id/choose_your_player"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/choose_your_player"
+            tools:srcCompat="@drawable/ic_person" />
 
-    <ImageButton
-        android:id="@+id/board_place_0_1"
-        style="@style/Widget.TicTacToe.BoardImageView"
-        android:onClick="play"
-        app:layout_constraintEnd_toStartOf="@+id/board_place_0_2"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/board_place_0_0"
-        app:layout_constraintTop_toTopOf="@+id/play_board"
-        tools:srcCompat="@drawable/x" />
+        <TextView
+            android:id="@+id/choose_your_player"
+            style="@style/Widget.TicTacToe.TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:text="@string/choose_your_player"
+            app:layout_constraintStart_toEndOf="@id/icon_person"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageButton
-        android:id="@+id/board_place_0_2"
-        style="@style/Widget.TicTacToe.BoardImageView"
-        android:onClick="play"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/board_place_0_1"
-        app:layout_constraintTop_toTopOf="@+id/play_board"
-        tools:srcCompat="@drawable/o" />
+        <RadioGroup
+            android:id="@+id/player_options"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checkedButton="@id/player_1"
+            android:orientation="vertical"
+            app:layout_constraintStart_toStartOf="@id/choose_your_player"
+            app:layout_constraintTop_toBottomOf="@id/choose_your_player">
 
-    <ImageButton
-        android:id="@+id/board_place_1_0"
-        style="@style/Widget.TicTacToe.BoardImageView"
-        android:onClick="play"
-        app:layout_constraintEnd_toStartOf="@+id/board_place_1_1"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/board_place_0_1"
-        tools:srcCompat="@drawable/x" />
+            <RadioButton
+                android:id="@+id/player_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/player_1" />
 
-    <ImageButton
-        android:id="@+id/board_place_1_1"
-        style="@style/Widget.TicTacToe.BoardImageView"
-        android:onClick="play"
-        app:layout_constraintEnd_toStartOf="@+id/board_place_1_2"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/board_place_1_0"
-        app:layout_constraintTop_toBottomOf="@+id/board_place_0_1"
-        tools:srcCompat="@drawable/o" />
-
-    <ImageButton
-        android:id="@+id/board_place_1_2"
-        style="@style/Widget.TicTacToe.BoardImageView"
-        android:onClick="play"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/board_place_1_1"
-        app:layout_constraintTop_toBottomOf="@+id/board_place_0_1"
-        tools:srcCompat="@drawable/x" />
+            <RadioButton
+                android:id="@+id/player_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/player_2" />
+        </RadioGroup>
 
 
-    <ImageButton
-        android:id="@+id/board_place_2_0"
-        style="@style/Widget.TicTacToe.BoardImageView"
-        android:onClick="play"
-        app:layout_constraintEnd_toStartOf="@+id/board_place_2_1"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/board_place_1_1"
-        tools:srcCompat="@drawable/o" />
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/play_board"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="48dp"
+            app:constraint_referenced_ids="board_place_0_0, board_place_0_1, board_place_0_2,board_place_1_0, board_place_1_1, board_place_1_2, board_place_2_0, board_place_2_1, board_place_2_2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/player_options" />
 
-    <ImageButton
-        android:id="@+id/board_place_2_1"
-        style="@style/Widget.TicTacToe.BoardImageView"
-        android:onClick="play"
-        app:layout_constraintEnd_toStartOf="@+id/board_place_2_2"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/board_place_2_0"
-        app:layout_constraintTop_toBottomOf="@+id/board_place_1_1"
-        tools:srcCompat="@drawable/x" />
+        <ImageButton
+            android:id="@+id/board_place_0_0"
+            style="@style/Widget.TicTacToe.BoardImageView"
+            android:onClick="play"
+            app:layout_constraintEnd_toStartOf="@+id/board_place_0_1"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/play_board"
+            tools:srcCompat="@drawable/o" />
 
-    <ImageButton
-        android:id="@+id/board_place_2_2"
-        style="@style/Widget.TicTacToe.BoardImageView"
-        android:onClick="play"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/board_place_2_1"
-        app:layout_constraintTop_toBottomOf="@+id/board_place_1_1"
-        tools:srcCompat="@drawable/x" />
+        <ImageButton
+            android:id="@+id/board_place_0_1"
+            style="@style/Widget.TicTacToe.BoardImageView"
+            android:onClick="play"
+            app:layout_constraintEnd_toStartOf="@+id/board_place_0_2"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/board_place_0_0"
+            app:layout_constraintTop_toTopOf="@+id/play_board"
+            tools:srcCompat="@drawable/x" />
+
+        <ImageButton
+            android:id="@+id/board_place_0_2"
+            style="@style/Widget.TicTacToe.BoardImageView"
+            android:onClick="play"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/board_place_0_1"
+            app:layout_constraintTop_toTopOf="@+id/play_board"
+            tools:srcCompat="@drawable/o" />
+
+        <ImageButton
+            android:id="@+id/board_place_1_0"
+            style="@style/Widget.TicTacToe.BoardImageView"
+            android:onClick="play"
+            app:layout_constraintEnd_toStartOf="@+id/board_place_1_1"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/board_place_0_1"
+            tools:srcCompat="@drawable/x" />
+
+        <ImageButton
+            android:id="@+id/board_place_1_1"
+            style="@style/Widget.TicTacToe.BoardImageView"
+            android:onClick="play"
+            app:layout_constraintEnd_toStartOf="@+id/board_place_1_2"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/board_place_1_0"
+            app:layout_constraintTop_toBottomOf="@+id/board_place_0_1"
+            tools:srcCompat="@drawable/o" />
+
+        <ImageButton
+            android:id="@+id/board_place_1_2"
+            style="@style/Widget.TicTacToe.BoardImageView"
+            android:onClick="play"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/board_place_1_1"
+            app:layout_constraintTop_toBottomOf="@+id/board_place_0_1"
+            tools:srcCompat="@drawable/x" />
 
 
-    <TextView
-        android:id="@+id/winner_player"
-        style="@style/Widget.TicTacToe.TextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="48dp"
-        android:onClick="play"
-        android:text="@string/player_s_is_the_winner"
-        android:visibility="invisible"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/board_place_2_1"
-        tools:text="Player 1 is the winner!"
-        tools:visibility="visible" />
+        <ImageButton
+            android:id="@+id/board_place_2_0"
+            style="@style/Widget.TicTacToe.BoardImageView"
+            android:onClick="play"
+            app:layout_constraintEnd_toStartOf="@+id/board_place_2_1"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/board_place_1_1"
+            tools:srcCompat="@drawable/o" />
 
-    <Button
-        android:id="@+id/play_again_btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="restart"
-        android:text="@string/play_again"
-        android:textAllCaps="false"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/winner_player"
-        tools:visibility="visible" />
+        <ImageButton
+            android:id="@+id/board_place_2_1"
+            style="@style/Widget.TicTacToe.BoardImageView"
+            android:onClick="play"
+            app:layout_constraintEnd_toStartOf="@+id/board_place_2_2"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/board_place_2_0"
+            app:layout_constraintTop_toBottomOf="@+id/board_place_1_1"
+            tools:srcCompat="@drawable/x" />
+
+        <ImageButton
+            android:id="@+id/board_place_2_2"
+            style="@style/Widget.TicTacToe.BoardImageView"
+            android:onClick="play"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/board_place_2_1"
+            app:layout_constraintTop_toBottomOf="@+id/board_place_1_1"
+            tools:srcCompat="@drawable/x" />
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/winner_player"
+            style="@style/Widget.TicTacToe.TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="48dp"
+            android:onClick="play"
+            android:text="@string/player_s_is_the_winner"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/board_place_2_1"
+            tools:text="Player 1 is the winner!"
+            tools:visibility="visible" />
+
+        <Button
+            android:id="@+id/play_again_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="restart"
+            android:text="@string/play_again"
+            android:textAllCaps="false"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/winner_player"
+            tools:visibility="visible" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,8 +1,9 @@
 package me.yshalsager.tictactoe
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
 import me.yshalsager.tictactoe.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -14,7 +15,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         setContentView(binding.root)
 
         val selectedId = binding.playerOptions.checkedRadioButtonId
@@ -96,6 +97,7 @@ class MainActivity : AppCompatActivity() {
         return Pair(false, null)
     }
 
+    @Suppress("UNUSED_PARAMETER")
     fun restart(view: View) {
         this.recreate()
         binding.player1.isChecked = true
