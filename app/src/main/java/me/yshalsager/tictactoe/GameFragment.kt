@@ -75,18 +75,10 @@ class GameFragment : Fragment() {
         val xCoordinate: Int = coordinators[0].toInt()
         playBoard[yCoordinate][xCoordinate] = selectedPlayer!!
 
-        // TODO: Navigate to win fragment when there's a winner and say who won
         val (hasWon, winner) = win()
         if (hasWon) {
-            view.findNavController().navigate(R.id.action_gameFragment_to_winFragment)
-//            binding.winnerPlayer.text =
-//                getString(
-//                    R.string.player_s_is_the_winner,
-//                    winner.toString()
-//                )
-//            binding.winnerPlayer.visibility = View.VISIBLE
-//            binding.playAgainBtn.visibility = View.VISIBLE
-//            gameEnded = true
+            view.findNavController()
+                .navigate(GameFragmentDirections.actionGameFragmentToWinFragment(winner!!))
         }
     }
 

@@ -34,6 +34,9 @@
             app:destination="@id/homeFragment"
             app:popUpTo="@id/homeFragment"
             app:popUpToInclusive="true" />
+        <argument
+            android:name="winner"
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/aboutFragment"

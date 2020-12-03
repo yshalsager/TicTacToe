@@ -23,6 +23,12 @@ class WinFragment : Fragment() {
         binding.playAgainBtn.setOnClickListener(
             Navigation.createNavigateOnClickListener(R.id.action_winFragment_to_homeFragment)
         )
+        val args = WinFragmentArgs.fromBundle(arguments!!)
+        binding.winnerPlayer.text =
+            getString(
+                R.string.player_s_is_the_winner,
+                args.winner.toString()
+            )
 
         return binding.root
     }
