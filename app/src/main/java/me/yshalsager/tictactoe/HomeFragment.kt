@@ -24,9 +24,10 @@ class HomeFragment : Fragment() {
         val binding: FragmentHomeBinding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
 
-        binding.startButton.setOnClickListener(
-            Navigation.createNavigateOnClickListener(R.id.action_homeFragment_to_gameFragment)
-        )
+        binding.startButton.setOnClickListener { view: View ->
+            view.findNavController()
+                .navigate(HomeFragmentDirections.actionHomeFragmentToGameFragment())
+        }
         setHasOptionsMenu(true)
 
         return binding.root
