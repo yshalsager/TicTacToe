@@ -8,7 +8,6 @@ import androidx.navigation.ui.NavigationUI
 import me.yshalsager.tictactoe.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
-    // TODO: update fragments titles' in action bar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

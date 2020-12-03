@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/homeFragment"
         android:name="me.yshalsager.tictactoe.HomeFragment"
-        android:label="HomeFragment"
+        android:label="@string/app_name"
         tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_homeFragment_to_gameFragment"
@@ -17,7 +17,7 @@
     <fragment
         android:id="@+id/gameFragment"
         android:name="me.yshalsager.tictactoe.GameFragment"
-        android:label="GameFragment"
+        android:label="@string/app_name"
         tools:layout="@layout/fragment_game">
         <action
             android:id="@+id/action_gameFragment_to_winFragment"
@@ -27,7 +27,7 @@
     <fragment
         android:id="@+id/winFragment"
         android:name="me.yshalsager.tictactoe.WinFragment"
-        android:label="WinFragment"
+        android:label="@string/app_name"
         tools:layout="@layout/fragment_win">
         <action
             android:id="@+id/action_winFragment_to_homeFragment"
