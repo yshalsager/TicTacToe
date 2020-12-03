@@ -5,8 +5,8 @@
     <string name="player_2">Player 2</string>
     <string name="player_s_is_the_winner">Player %1$s is the winner!</string>
     <string name="play_again">Play again!</string>
-    <string name="welcome_click_start_button_below_to_begin_a_new_game">Welcome! Click start button below to begin a new game!</string>
+    <string name="welcome_text">Welcome! Click start button below to begin a new game!</string>
     <string name="start_playing">Start Playing</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="about_game">About Tic Tac Toe game</string>
+    <string name="about_text">Tic-tac-toe is a paper-and-pencil game for two players, X and O, who take turns marking the spaces in a 3×3 grid. The player who succeeds in placing three of their marks in a horizontal, vertical, or diagonal row is the winner. It is a solved game with a forced draw assuming best play from both players.</string>
 </resources>

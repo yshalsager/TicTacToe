@@ -18,27 +18,27 @@
             style="@style/Widget.TicTacToe.TextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/welcome_click_start_button_below_to_begin_a_new_game"
+            android:text="@string/welcome_text"
             android:textAlignment="center"
             android:textSize="24sp"
             app:layout_constraintBottom_toTopOf="@+id/start_button"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/o_img" />
+            app:layout_constraintTop_toBottomOf="@+id/xo_img" />
 
         <ImageView
             android:id="@+id/x_img"
             android:layout_width="148dp"
             android:layout_height="148dp"
             app:layout_constraintBottom_toTopOf="@+id/welcome_text"
-            app:layout_constraintEnd_toStartOf="@+id/o_img"
+            app:layout_constraintEnd_toStartOf="@+id/xo_img"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/x"
             tools:ignore="ContentDescription" />
 
         <ImageView
-            android:id="@+id/o_img"
+            android:id="@+id/xo_img"
             android:layout_width="148dp"
             android:layout_height="148dp"
             app:layout_constraintBottom_toTopOf="@+id/welcome_text"
