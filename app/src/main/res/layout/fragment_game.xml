@@ -65,96 +65,85 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="48dp"
-                app:constraint_referenced_ids="board_place_0_0, board_place_0_1, board_place_0_2,board_place_1_0, board_place_1_1, board_place_1_2, board_place_2_0, board_place_2_1, board_place_2_2"
+                app:constraint_referenced_ids="button0, button1, button2,button3, button4, button5, button6, button7, button8"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/player_options" />
 
-            <ImageButton
-                android:id="@+id/board_place_0_0"
-                style="@style/Widget.TicTacToe.BoardImageView"
-                app:layout_constraintEnd_toStartOf="@+id/board_place_0_1"
-                app:layout_constraintHorizontal_bias="0.5"
+            <Button
+                android:id="@+id/button0"
+                style="@style/Widget.TicTacToe.BoardButtonView"
+                app:layout_constraintEnd_toStartOf="@+id/button1"
                 app:layout_constraintHorizontal_chainStyle="packed"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@id/play_board"
-                tools:srcCompat="@drawable/o" />
+                tools:text="X" />
 
-            <ImageButton
-                android:id="@+id/board_place_0_1"
-                style="@style/Widget.TicTacToe.BoardImageView"
-                app:layout_constraintEnd_toStartOf="@+id/board_place_0_2"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/board_place_0_0"
+            <Button
+                android:id="@+id/button1"
+                style="@style/Widget.TicTacToe.BoardButtonView"
+                app:layout_constraintEnd_toStartOf="@+id/button2"
+                app:layout_constraintStart_toEndOf="@+id/button0"
                 app:layout_constraintTop_toTopOf="@+id/play_board"
-                tools:srcCompat="@drawable/x" />
+                tools:text="O" />
 
-            <ImageButton
-                android:id="@+id/board_place_0_2"
-                style="@style/Widget.TicTacToe.BoardImageView"
+            <Button
+                android:id="@+id/button2"
+                style="@style/Widget.TicTacToe.BoardButtonView"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/board_place_0_1"
+                app:layout_constraintStart_toEndOf="@+id/button1"
                 app:layout_constraintTop_toTopOf="@+id/play_board"
-                tools:srcCompat="@drawable/o" />
+                tools:text="X" />
 
-            <ImageButton
-                android:id="@+id/board_place_1_0"
-                style="@style/Widget.TicTacToe.BoardImageView"
-                app:layout_constraintEnd_toStartOf="@+id/board_place_1_1"
-                app:layout_constraintHorizontal_bias="0.5"
+            <Button
+                android:id="@+id/button3"
+                style="@style/Widget.TicTacToe.BoardButtonView"
+                app:layout_constraintEnd_toStartOf="@+id/button4"
                 app:layout_constraintHorizontal_chainStyle="packed"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/board_place_0_1"
-                tools:srcCompat="@drawable/x" />
+                app:layout_constraintTop_toBottomOf="@+id/button1"
+                tools:text="O" />
 
-            <ImageButton
-                android:id="@+id/board_place_1_1"
-                style="@style/Widget.TicTacToe.BoardImageView"
-                app:layout_constraintEnd_toStartOf="@+id/board_place_1_2"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/board_place_1_0"
-                app:layout_constraintTop_toBottomOf="@+id/board_place_0_1"
-                tools:srcCompat="@drawable/o" />
+            <Button
+                android:id="@+id/button4"
+                style="@style/Widget.TicTacToe.BoardButtonView"
+                app:layout_constraintEnd_toStartOf="@+id/button5"
+                app:layout_constraintStart_toEndOf="@+id/button3"
+                app:layout_constraintTop_toBottomOf="@+id/button1"
+                tools:text="X" />
 
-            <ImageButton
-                android:id="@+id/board_place_1_2"
-                style="@style/Widget.TicTacToe.BoardImageView"
+            <Button
+                android:id="@+id/button5"
+                style="@style/Widget.TicTacToe.BoardButtonView"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/board_place_1_1"
-                app:layout_constraintTop_toBottomOf="@+id/board_place_0_1"
-                tools:srcCompat="@drawable/x" />
+                app:layout_constraintStart_toEndOf="@+id/button4"
+                app:layout_constraintTop_toBottomOf="@+id/button1"
+                tools:text="O" />
 
-
-            <ImageButton
-                android:id="@+id/board_place_2_0"
-                style="@style/Widget.TicTacToe.BoardImageView"
-                app:layout_constraintEnd_toStartOf="@+id/board_place_2_1"
-                app:layout_constraintHorizontal_bias="0.5"
+            <Button
+                android:id="@+id/button6"
+                style="@style/Widget.TicTacToe.BoardButtonView"
+                app:layout_constraintEnd_toStartOf="@+id/button7"
                 app:layout_constraintHorizontal_chainStyle="packed"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/board_place_1_1"
-                tools:srcCompat="@drawable/o" />
+                app:layout_constraintTop_toBottomOf="@+id/button4"
+                tools:text="X" />
 
-            <ImageButton
-                android:id="@+id/board_place_2_1"
-                style="@style/Widget.TicTacToe.BoardImageView"
-                app:layout_constraintEnd_toStartOf="@+id/board_place_2_2"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/board_place_2_0"
-                app:layout_constraintTop_toBottomOf="@+id/board_place_1_1"
-                tools:srcCompat="@drawable/x" />
+            <Button
+                android:id="@+id/button7"
+                style="@style/Widget.TicTacToe.BoardButtonView"
+                app:layout_constraintEnd_toStartOf="@+id/button8"
+                app:layout_constraintStart_toEndOf="@+id/button6"
+                app:layout_constraintTop_toBottomOf="@+id/button4"
+                tools:text="O" />
 
-            <ImageButton
-                android:id="@+id/board_place_2_2"
-                style="@style/Widget.TicTacToe.BoardImageView"
+            <Button
+                android:id="@+id/button8"
+                style="@style/Widget.TicTacToe.BoardButtonView"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.5"
-                app:layout_constraintStart_toEndOf="@+id/board_place_2_1"
-                app:layout_constraintTop_toBottomOf="@+id/board_place_1_1"
-                tools:srcCompat="@drawable/x" />
-
+                app:layout_constraintStart_toEndOf="@+id/button7"
+                app:layout_constraintTop_toBottomOf="@+id/button4"
+                tools:text="X" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

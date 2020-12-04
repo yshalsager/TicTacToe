@@ -1,22 +1,28 @@
 package me.yshalsager.tictactoe
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
+import android.widget.Button
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import me.yshalsager.tictactoe.databinding.FragmentGameBinding
 
 
+/** onSaveInstanceState Bundle Keys **/
+const val KEY_PLAYER = "selected_player_key"
+const val KEY_BOARD = "play_board_key"
+const val KEY_GAME_ENDED = "game_ended_key"
+
+
 class GameFragment : Fragment() {
     private lateinit var binding: FragmentGameBinding
-    private var selectedPlayer: Int? = null
-    private var playBoard: Array<Array<Int>> =
-        arrayOf(arrayOf(0, 0, 0), arrayOf(0, 0, 0), arrayOf(0, 0, 0))
+    private var selectedPlayer: Int = 1
+    private var playBoard = arrayListOf("", "", "", "", "", "", "", "", "")
     private var gameEnded: Boolean = false
+    private lateinit var clickableViews: List<Button>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,88 +42,93 @@ class GameFragment : Fragment() {
         binding.player2.setOnClickListener { selectedPlayer = 2 }
         setListeners()
 
+        if (savedInstanceState != null) {
+            // Get all the game state information from the bundle, set it
+            selectedPlayer = savedInstanceState.getInt(KEY_PLAYER)
+            playBoard = savedInstanceState.getSerializable(KEY_BOARD) as ArrayList<String>
+            gameEnded = savedInstanceState.getBoolean(KEY_GAME_ENDED)
+            playBoard.zip(clickableViews).forEach { pair ->
+                pair.component2().text = pair.component1()
+            }
+        }
 
         return binding.root
     }
 
-    private fun setListeners() {
-        val clickableViews: List<ImageView> =
-            listOf(
-                binding.boardPlace00,
-                binding.boardPlace01,
-                binding.boardPlace02,
-                binding.boardPlace10,
-                binding.boardPlace11,
-                binding.boardPlace12,
-                binding.boardPlace20,
-                binding.boardPlace21,
-                binding.boardPlace22
-            )
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putInt(KEY_PLAYER, selectedPlayer)
+        outState.putSerializable(KEY_BOARD, playBoard)
+        outState.putBoolean(KEY_GAME_ENDED, gameEnded)
+    }
 
-        for (item in clickableViews) {
-            item.setOnClickListener { play(it) }
+    private fun setListeners() {
+        clickableViews = listOf(
+            binding.button0, binding.button1, binding.button2, binding.button3,
+            binding.button4, binding.button5, binding.button6, binding.button7,
+            binding.button8
+        )
+
+        clickableViews.forEach { button: Button ->
+            button.setOnClickListener { play(button) }
         }
     }
 
-    fun play(view: View) {
+    private fun play(button: Button) {
         if (gameEnded) {
             return
         }
-        if (selectedPlayer == 1) {
-            view.setBackgroundResource(R.drawable.x)
-        } else {
-            view.setBackgroundResource(R.drawable.o)
-        }
-        view.isClickable = false
-        val coordinators: List<String> =
-            resources.getResourceName(view.id).split('/')[1].split('_').slice(2..3)
-        val yCoordinate: Int = coordinators[1].toInt()
-        val xCoordinate: Int = coordinators[0].toInt()
-        playBoard[yCoordinate][xCoordinate] = selectedPlayer!!
-
+        playTurn(button, selectedPlayer)
+        button.isClickable = false
         val (hasWon, winner) = win()
         if (hasWon) {
-            view.findNavController()
+            button.findNavController()
                 .navigate(GameFragmentDirections.actionGameFragmentToWinFragment(winner!!))
         }
     }
 
-    private fun arrayItemsAreSame(array: Array<Int>): Boolean {
-        return array.count { it == array[0] } == array.count() && array[0] != 0
+    private fun playTurn(button: Button, player: Int) {
+        val toPlay: String = if (player == 1) "X" else "O"
+        button.text = toPlay
+        playBoard[resources.getResourceName(button.id).takeLast(1).toInt()] = toPlay
     }
 
+    private fun arrayItemsAreSame(array: List<String>): Boolean =
+        array.count { it == array[0] } == array.count() && array[0] != ""
+
+    private fun getPlayerNumberFromBoard(cell: String): Int = if (cell == "X") 1 else 2
+
     private fun win(): Pair<Boolean, Int?> {
-        // horizontal win
-        for (row in playBoard) {
-            if (arrayItemsAreSame(row)) {
-                return Pair(true, row[0])
+        // split the board into 3 chunks to make win calculations
+        val board: List<List<String>> = playBoard.chunked(3)
+
+        // horizontal win ـ
+        board.forEach {
+            if (arrayItemsAreSame(it)) {
+                return Pair(true, getPlayerNumberFromBoard(it[0]))
             }
         }
-        // vertical win
-        for (column in 0 until playBoard[0].count()) {
-            val toCheck = mutableListOf<Int>()
-            for (row in playBoard) {
+        // vertical win |
+        for (column in 0 until board[0].count()) {
+            val toCheck = mutableListOf<String>()
+            for (row in board) {
                 toCheck.add(row[column])
             }
-            if (arrayItemsAreSame(toCheck.toTypedArray())) {
-                return Pair(true, toCheck[0])
+            if (arrayItemsAreSame(toCheck)) {
+                return Pair(true, getPlayerNumberFromBoard(toCheck[0]))
             }
         }
         // diagonal win \
-        val leftDiagonal = mutableListOf<Int>()
-        for (idx in 0 until playBoard.count()) {
-            leftDiagonal.add(playBoard[idx][idx])
-        }
-        if (arrayItemsAreSame(leftDiagonal.toTypedArray())) {
-            return Pair(true, leftDiagonal[0])
+        val leftDiagonal = (0 until board.count()).map { board[it][it] }
+        if (arrayItemsAreSame(leftDiagonal)) {
+            return Pair(true, getPlayerNumberFromBoard(leftDiagonal[0]))
         }
         // diagonal win /
-        val rightDiagonal = mutableListOf<Int>()
-        for ((idx, reverse_idx) in (0 until playBoard.count()).reversed().withIndex()) {
-            rightDiagonal.add(playBoard[idx][reverse_idx])
-        }
-        if (arrayItemsAreSame(rightDiagonal.toTypedArray())) {
-            return Pair(true, rightDiagonal[0])
+        val rightDiagonal = mutableListOf<String>()
+        (0 until board.count()).reversed()
+            .mapIndexedTo(rightDiagonal) { idx, reverse_idx -> board[idx][reverse_idx] }
+        if (arrayItemsAreSame(rightDiagonal)) {
+            return Pair(true, getPlayerNumberFromBoard(rightDiagonal[0]))
         }
         // no win
         return Pair(false, null)
