@@ -17,47 +17,26 @@
             android:padding="16dp"
             tools:context=".GameFragment">
 
-            <ImageView
-                android:id="@+id/icon_person"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:importantForAccessibility="no"
-                app:layout_constraintBottom_toBottomOf="@id/choose_your_player"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="@id/choose_your_player"
-                tools:srcCompat="@drawable/ic_person" />
-
             <TextView
-                android:id="@+id/choose_your_player"
+                android:id="@+id/player_turn"
                 style="@style/Widget.TicTacToe.TextView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:text="@string/choose_your_player"
-                app:layout_constraintStart_toEndOf="@id/icon_person"
+                android:layout_margin="48dp"
+                android:text="@string/it_s_player_s_turn"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <RadioGroup
                 android:id="@+id/player_options"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:checkedButton="@id/player_1"
+                android:checkedButton="@id/player_turn"
                 android:orientation="vertical"
-                app:layout_constraintStart_toStartOf="@id/choose_your_player"
-                app:layout_constraintTop_toBottomOf="@id/choose_your_player">
-
-                <RadioButton
-                    android:id="@+id/player_1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/player_1" />
-
-                <RadioButton
-                    android:id="@+id/player_2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/player_2" />
-            </RadioGroup>
+                app:layout_constraintStart_toStartOf="@id/player_turn"
+                app:layout_constraintTop_toBottomOf="@id/player_turn"/>
 
 
             <androidx.constraintlayout.widget.Group

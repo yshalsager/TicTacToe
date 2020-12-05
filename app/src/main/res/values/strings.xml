@@ -1,8 +1,5 @@
 <resources>
     <string name="app_name">Tic Tac Toe</string>
-    <string name="choose_your_player">Choose your player</string>
-    <string name="player_1">Player 1</string>
-    <string name="player_2">Player 2</string>
     <string name="player_s_is_the_winner">Player %1$s is the winner!</string>
     <string name="play_again">Play again!</string>
     <string name="welcome_text">Welcome! Click start button below to begin a new game!</string>
@@ -13,4 +10,7 @@
     <string name="share">Share</string>
     <string name="share_text">Tic-Tac-Toe is fun!</string>
     <string name="sharing_is_not_available">It seems that sharing is not available on your device!</string>
+    <string name="pass_device_to_player_s">Pass the device to player %1$s.</string>
+    <string name="next_turn">Next turn</string>
+    <string name="it_s_player_s_turn">It\'s player %1$s turn!</string>
 </resources>

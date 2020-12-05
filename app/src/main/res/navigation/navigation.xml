@@ -11,8 +11,8 @@
         android:label="@string/app_name"
         tools:layout="@layout/fragment_home">
         <action
-            android:id="@+id/action_homeFragment_to_gameFragment"
-            app:destination="@id/gameFragment"
+            android:id="@+id/action_homeFragment_to_passTurnFragment"
+            app:destination="@id/passTurnFragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
@@ -24,13 +24,26 @@
         android:label="@string/app_name"
         tools:layout="@layout/fragment_game">
         <action
-            android:id="@+id/action_gameFragment_to_winFragment"
-            app:destination="@id/winFragment"
-            app:enterAnim="@anim/fade_in"
-            app:exitAnim="@anim/fade_out"
+            android:id="@+id/action_gameFragment_to_passTurnFragment"
+            app:destination="@id/passTurnFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"
             app:popUpTo="@+id/homeFragment" />
+        <argument
+            android:name="player"
+            app:argType="integer" />
+        <argument
+            android:name="board"
+            app:argType="string[]" />
+        <action
+            android:id="@+id/action_gameFragment_to_winFragment"
+            app:destination="@id/winFragment"
+            app:popUpTo="@id/homeFragment" />
+        <argument
+            android:name="winner"
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/winFragment"
@@ -55,4 +68,24 @@
         android:name="me.yshalsager.tictactoe.AboutFragment"
         android:label="@string/about_game"
         tools:layout="@layout/fragment_about" />
+    <fragment
+        android:id="@+id/passTurnFragment"
+        android:name="me.yshalsager.tictactoe.PassTurnFragment"
+        android:label="@string/app_name"
+        tools:layout="@layout/fragment_pass_turn">
+        <action
+            android:id="@+id/action_passTurnFragment_to_gameFragment"
+            app:destination="@id/gameFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"
+            app:popUpTo="@+id/gameFragment" />
+        <argument
+            android:name="player"
+            app:argType="integer" />
+        <argument
+            android:name="board"
+            app:argType="string[]" />
+    </fragment>
 </navigation>

@@ -32,24 +32,27 @@ class GameFragment : Fragment() {
         binding = DataBindingUtil.inflate(
             inflater, R.layout.fragment_game, container, false
         )
-        val selectedId = binding.playerOptions.checkedRadioButtonId
-        selectedPlayer = when (selectedId) {
-            R.id.player_1 -> 1
-            else -> 2
+        val args = GameFragmentArgs.fromBundle(arguments!!)
+        if (args.board.isNotEmpty()) {
+            playBoard = args.board.toList() as ArrayList<String>
         }
 
-        binding.player1.setOnClickListener { selectedPlayer = 1 }
-        binding.player2.setOnClickListener { selectedPlayer = 2 }
+        selectedPlayer = args.player
+        binding.playerTurn.text =
+            getString(
+                R.string.it_s_player_s_turn,
+                selectedPlayer.toString()
+            )
+
         setListeners()
+        restoreBoard()
 
         if (savedInstanceState != null) {
             // Get all the game state information from the bundle, set it
             selectedPlayer = savedInstanceState.getInt(KEY_PLAYER)
             playBoard = savedInstanceState.getSerializable(KEY_BOARD) as ArrayList<String>
             gameEnded = savedInstanceState.getBoolean(KEY_GAME_ENDED)
-            playBoard.zip(clickableViews).forEach { pair ->
-                pair.component2().text = pair.component1()
-            }
+            restoreBoard()
         }
 
         return binding.root
@@ -84,6 +87,14 @@ class GameFragment : Fragment() {
         if (hasWon) {
             button.findNavController()
                 .navigate(GameFragmentDirections.actionGameFragmentToWinFragment(winner!!))
+        } else {
+            button.findNavController()
+                .navigate(
+                    GameFragmentDirections.actionGameFragmentToPassTurnFragment(
+                        selectedPlayer,
+                        playBoard.toTypedArray()
+                    )
+                )
         }
     }
 
@@ -133,4 +144,11 @@ class GameFragment : Fragment() {
         // no win
         return Pair(false, null)
     }
+
+    private fun restoreBoard() {
+        playBoard.zip(clickableViews).forEach { pair ->
+            pair.component2().text = pair.component1()
+        }
+    }
+
 }

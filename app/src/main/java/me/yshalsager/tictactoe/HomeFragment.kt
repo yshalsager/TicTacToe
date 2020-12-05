@@ -26,7 +26,7 @@ class HomeFragment : Fragment() {
 
         binding.startButton.setOnClickListener { view: View ->
             view.findNavController()
-                .navigate(HomeFragmentDirections.actionHomeFragmentToGameFragment())
+                .navigate(HomeFragmentDirections.actionHomeFragmentToPassTurnFragment(0, arrayOf()))
         }
         setHasOptionsMenu(true)
 
