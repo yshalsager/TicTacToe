@@ -26,7 +26,7 @@ class HomeFragment : Fragment() {
 
         binding.startButton.setOnClickListener { view: View ->
             view.findNavController()
-                .navigate(HomeFragmentDirections.actionHomeFragmentToPassTurnFragment(0, arrayOf()))
+                .navigate(HomeFragmentDirections.actionHomeFragmentToPassTurnFragment())
         }
         setHasOptionsMenu(true)
 
@@ -40,7 +40,7 @@ class HomeFragment : Fragment() {
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return NavigationUI.onNavDestinationSelected(
-            item, view!!.findNavController()
+            item, requireView().findNavController()
         )
                 || super.onOptionsItemSelected(item)
     }

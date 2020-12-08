@@ -14,12 +14,16 @@ import androidx.core.app.ShareCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
+import androidx.navigation.navGraphViewModels
 import me.yshalsager.tictactoe.R
 import me.yshalsager.tictactoe.databinding.FragmentWinBinding
+import me.yshalsager.tictactoe.screens.game.GameViewModel
 
 
 class WinFragment : Fragment() {
     private lateinit var binding: FragmentWinBinding
+    private val viewModel: GameViewModel by navGraphViewModels(R.id.navigation)
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -32,11 +36,10 @@ class WinFragment : Fragment() {
             view.findNavController()
                 .navigate(WinFragmentDirections.actionWinFragmentToHomeFragment())
         }
-        val args = WinFragmentArgs.fromBundle(arguments!!)
         binding.winnerPlayer.text =
             getString(
                 R.string.player_s_is_the_winner,
-                args.winner.toString()
+                viewModel.winnerPlayer.value.toString()
             )
 
         setHasOptionsMenu(true)
@@ -72,5 +75,10 @@ class WinFragment : Fragment() {
             R.id.share -> share()
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        viewModel.clear()
     }
 }

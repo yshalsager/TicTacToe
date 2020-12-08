@@ -7,13 +7,15 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
+import androidx.navigation.navGraphViewModels
 import me.yshalsager.tictactoe.R
 import me.yshalsager.tictactoe.databinding.FragmentPassTurnBinding
+import me.yshalsager.tictactoe.screens.game.GameViewModel
 
 
 class PassTurnFragment : Fragment() {
     private lateinit var binding: FragmentPassTurnBinding
-    private var otherPlayer: Int = 0
+    private val viewModel: GameViewModel by navGraphViewModels(R.id.navigation)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -23,32 +25,19 @@ class PassTurnFragment : Fragment() {
         binding = DataBindingUtil.inflate(
             inflater, R.layout.fragment_pass_turn, container, false
         )
-        val args = PassTurnFragmentArgs.fromBundle(arguments!!)
-
-        otherPlayer = when (args.player) {
-            0 -> 1
-            1 -> 2
-            else -> 1
-        }
 
         binding.passBtn.setOnClickListener { view: View ->
             view.findNavController()
                 .navigate(
-                    PassTurnFragmentDirections.actionPassTurnFragmentToGameFragment(
-                        otherPlayer,
-                        args.board,
-                        0
-                    )
+                    PassTurnFragmentDirections.actionPassTurnFragmentToGameFragment()
                 )
         }
-
 
         binding.playerTurn.text =
             getString(
                 R.string.pass_device_to_player_s,
-                otherPlayer.toString()
+                viewModel.selectedPlayer.value.toString()
             )
         return binding.root
     }
-
 }
