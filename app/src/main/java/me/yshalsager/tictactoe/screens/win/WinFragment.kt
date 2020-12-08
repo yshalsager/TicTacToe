@@ -1,9 +1,8 @@
-package me.yshalsager.tictactoe
+package me.yshalsager.tictactoe.screens.win
 
 import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.Menu
 import android.view.MenuInflater
@@ -13,7 +12,9 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.app.ShareCompat
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
+import me.yshalsager.tictactoe.R
 import me.yshalsager.tictactoe.databinding.FragmentWinBinding
 
 

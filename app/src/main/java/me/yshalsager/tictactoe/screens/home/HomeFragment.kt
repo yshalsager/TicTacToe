@@ -1,4 +1,4 @@
-package me.yshalsager.tictactoe
+package me.yshalsager.tictactoe.screens.home
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,9 +9,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.databinding.DataBindingUtil
-import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
+import me.yshalsager.tictactoe.R
 import me.yshalsager.tictactoe.databinding.FragmentHomeBinding
 
 class HomeFragment : Fragment() {

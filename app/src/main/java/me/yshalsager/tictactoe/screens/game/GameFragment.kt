@@ -1,4 +1,4 @@
-package me.yshalsager.tictactoe
+package me.yshalsager.tictactoe.screens.game
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,6 +8,7 @@ import android.widget.Button
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
+import me.yshalsager.tictactoe.R
 import me.yshalsager.tictactoe.databinding.FragmentGameBinding
 
 

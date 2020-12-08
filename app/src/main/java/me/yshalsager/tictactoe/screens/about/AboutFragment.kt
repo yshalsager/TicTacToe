@@ -1,13 +1,13 @@
-package me.yshalsager.tictactoe
+package me.yshalsager.tictactoe.screens.about
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
+import me.yshalsager.tictactoe.R
 import me.yshalsager.tictactoe.databinding.FragmentAboutBinding
-
 
 class AboutFragment : Fragment() {
 
