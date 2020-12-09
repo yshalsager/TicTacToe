@@ -39,8 +39,11 @@ class GameViewModel : ViewModel() {
         val toPlay: String = if (selectedPlayer.value == 1) "X" else "O"
         _playBoard.value?.set(view.tag.toString().toInt(), toPlay)
         view.isClickable = false
-        swapPlayer()
         _eventTurnFinish.value = false
+    }
+
+    fun swapPlayer() {
+        _selectedPlayer.value = if (selectedPlayer.value == 1) 2 else 1
     }
 
     private fun arrayItemsAreSame(array: List<String>): Boolean =
@@ -48,18 +51,9 @@ class GameViewModel : ViewModel() {
 
     private fun getPlayerNumberFromBoard(cell: String): Int = if (cell == "X") 1 else 2
 
-    private fun swapPlayer() {
-        _selectedPlayer.value = when (_selectedPlayer.value) {
-            0 -> 1
-            1 -> 2
-            else -> 1
-        }
-    }
-
     fun win(): Boolean {
         // split the board into 3 chunks to make win calculations
         val board: List<List<String>>? = _playBoard.value?.chunked(3)
-
         // horizontal win ـ
         board?.forEach {
             if (arrayItemsAreSame(it)) {
@@ -98,6 +92,15 @@ class GameViewModel : ViewModel() {
         }
         // no win
         return false
+    }
+
+    fun draw(): Boolean {
+        val isDraw = _playBoard.value?.filter { it.isNotBlank() }?.size == _playBoard.value?.size
+        if (isDraw) {
+            _winnerPlayer.value = 0
+            _eventGameFinish.value = true
+        }
+        return isDraw
     }
 
     override fun onCleared() {

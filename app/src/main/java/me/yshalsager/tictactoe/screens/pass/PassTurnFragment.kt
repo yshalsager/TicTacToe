@@ -6,16 +6,17 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.navigation.findNavController
-import androidx.navigation.navGraphViewModels
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.NavHostFragment.findNavController
+import androidx.navigation.fragment.navArgs
 import me.yshalsager.tictactoe.R
 import me.yshalsager.tictactoe.databinding.FragmentPassTurnBinding
-import me.yshalsager.tictactoe.screens.game.GameViewModel
 
 
 class PassTurnFragment : Fragment() {
     private lateinit var binding: FragmentPassTurnBinding
-    private val viewModel: GameViewModel by navGraphViewModels(R.id.navigation)
+    private lateinit var viewModel: PassTurnViewModel
+    private lateinit var viewModelFactory: PassTurnViewModelFactory
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,18 +27,26 @@ class PassTurnFragment : Fragment() {
             inflater, R.layout.fragment_pass_turn, container, false
         )
 
-        binding.passBtn.setOnClickListener { view: View ->
-            view.findNavController()
-                .navigate(
-                    PassTurnFragmentDirections.actionPassTurnFragmentToGameFragment()
-                )
-        }
+        val passFragmentArgs by navArgs<PassTurnFragmentArgs>()
+        viewModelFactory = PassTurnViewModelFactory(passFragmentArgs.lastPlayer)
+        viewModel = ViewModelProvider(this, viewModelFactory)
+            .get(PassTurnViewModel::class.java)
 
-        binding.playerTurn.text =
-            getString(
-                R.string.pass_device_to_player_s,
-                viewModel.selectedPlayer.value.toString()
-            )
+        binding.passTurnViewModel = viewModel
+        binding.lifecycleOwner = this
+
+        viewModel.eventPassTurn.observe(viewLifecycleOwner, { pass ->
+            if (pass) {
+                findNavController(this)
+                    .navigate(
+                        PassTurnFragmentDirections.actionPassTurnFragmentToGameFragment(
+                            0
+                        )
+                    )
+                viewModel.onPassTurnComplete()
+            }
+        })
+
         return binding.root
     }
 }

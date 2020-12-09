@@ -35,6 +35,9 @@
             android:id="@+id/action_gameFragment_to_winFragment"
             app:destination="@id/winFragment"
             app:popUpTo="@id/homeFragment" />
+        <argument
+            android:name="winnerPlayer"
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/winFragment"
@@ -50,6 +53,9 @@
             app:popExitAnim="@anim/fade_out"
             app:popUpTo="@id/homeFragment"
             app:popUpToInclusive="true" />
+        <argument
+            android:name="winnerPlayer"
+            app:argType="integer" />
     </fragment>
     <fragment
         android:id="@+id/aboutFragment"
@@ -69,5 +75,8 @@
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right"
             app:popUpTo="@+id/gameFragment" />
+        <argument
+            android:name="lastPlayer"
+            app:argType="integer" />
     </fragment>
 </navigation>

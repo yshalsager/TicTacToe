@@ -7,8 +7,8 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import me.yshalsager.tictactoe.R
@@ -26,7 +26,7 @@ class HomeFragment : Fragment() {
 
         binding.startButton.setOnClickListener { view: View ->
             view.findNavController()
-                .navigate(HomeFragmentDirections.actionHomeFragmentToPassTurnFragment())
+                .navigate(HomeFragmentDirections.actionHomeFragmentToPassTurnFragment(0))
         }
         setHasOptionsMenu(true)
 

@@ -5,6 +5,9 @@
 
     <data>
 
+        <variable
+            name="winViewModel"
+            type="me.yshalsager.tictactoe.screens.win.WinViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -14,12 +17,29 @@
         tools:context=".screens.win.WinFragment">
 
         <TextView
+            android:id="@+id/draw"
+            style="@style/Widget.TicTacToe.TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="48dp"
+            android:text="@string/it_s_a_draw"
+            android:textSize="24sp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@+id/play_again_btn"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed"
+            tools:text="It's a draw!"
+            tools:visibility="visible" />
+
+        <TextView
             android:id="@+id/winner_player"
             style="@style/Widget.TicTacToe.TextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="48dp"
-            android:text="@string/player_s_is_the_winner"
+            android:text="@{@string/player_s_is_the_winner(winViewModel.winnerPlayer)}"
             android:textSize="24sp"
             app:layout_constraintBottom_toTopOf="@+id/play_again_btn"
             app:layout_constraintEnd_toEndOf="parent"
@@ -32,6 +52,7 @@
             android:id="@+id/play_again_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:onClick="@{() -> winViewModel.playAgain()}"
             android:text="@string/play_again"
             android:textAllCaps="false"
             app:layout_constraintBottom_toBottomOf="parent"

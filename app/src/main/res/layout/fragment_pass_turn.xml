@@ -5,6 +5,9 @@
 
     <data>
 
+        <variable
+            name="passTurnViewModel"
+            type="me.yshalsager.tictactoe.screens.pass.PassTurnViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -19,7 +22,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="48dp"
-            android:text="@string/pass_device_to_player_s"
+            android:text="@{@string/pass_device_to_player_s(passTurnViewModel.nextPlayer)}"
             android:textSize="24sp"
             app:layout_constraintBottom_toTopOf="@+id/pass_btn"
             app:layout_constraintEnd_toEndOf="parent"
@@ -32,6 +35,7 @@
             android:id="@+id/pass_btn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:onClick="@{() -> passTurnViewModel.pass()}"
             android:text="@string/next_turn"
             android:textAllCaps="false"
             app:layout_constraintBottom_toBottomOf="parent"

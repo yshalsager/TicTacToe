@@ -31,8 +31,11 @@ class GameFragment : Fragment() {
             if (isFinished) {
                 viewModel.onGameFinishComplete()
                 findNavController(this).navigate(
-                    GameFragmentDirections.actionGameFragmentToWinFragment()
+                    GameFragmentDirections.actionGameFragmentToWinFragment(
+                        viewModel.winnerPlayer.value!!
+                    )
                 )
+                viewModel.clear()
             }
         })
 
@@ -40,16 +43,19 @@ class GameFragment : Fragment() {
             if (!isFinished) {
                 viewModel.onTurnComplete()
                 binding.invalidateAll()
-                val hasWon = viewModel.win()
-                if (!hasWon) {
+                val isWin = viewModel.win()
+                val isDraw = viewModel.draw()
+                if (!isWin && !isDraw) {
                     findNavController(this).navigate(
-                        GameFragmentDirections.actionGameFragmentToPassTurnFragment()
+                        GameFragmentDirections.actionGameFragmentToPassTurnFragment(
+                            viewModel.selectedPlayer.value!!
+                        )
                     )
+                    viewModel.swapPlayer()
                 }
             }
         })
 
         return binding.root
     }
-
 }

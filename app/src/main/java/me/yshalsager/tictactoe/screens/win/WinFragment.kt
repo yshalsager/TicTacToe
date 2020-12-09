@@ -13,16 +13,17 @@ import android.widget.Toast
 import androidx.core.app.ShareCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
-import androidx.navigation.findNavController
-import androidx.navigation.navGraphViewModels
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.navArgs
 import me.yshalsager.tictactoe.R
 import me.yshalsager.tictactoe.databinding.FragmentWinBinding
-import me.yshalsager.tictactoe.screens.game.GameViewModel
 
 
 class WinFragment : Fragment() {
     private lateinit var binding: FragmentWinBinding
-    private val viewModel: GameViewModel by navGraphViewModels(R.id.navigation)
+    private lateinit var viewModelFactory: WinViewModelFactory
+    private lateinit var viewModel: WinViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,15 +33,26 @@ class WinFragment : Fragment() {
         binding = DataBindingUtil.inflate(
             inflater, R.layout.fragment_win, container, false
         )
-        binding.playAgainBtn.setOnClickListener { view: View ->
-            view.findNavController()
-                .navigate(WinFragmentDirections.actionWinFragmentToHomeFragment())
+
+        val winFragmentArgs by navArgs<WinFragmentArgs>()
+        viewModelFactory = WinViewModelFactory(winFragmentArgs.winnerPlayer)
+        viewModel = ViewModelProvider(this, viewModelFactory).get(WinViewModel::class.java)
+
+        binding.winViewModel = viewModel
+        binding.lifecycleOwner = this
+
+        if (viewModel.isDraw.value == true) {
+            binding.draw.visibility = View.VISIBLE
+            binding.winnerPlayer.visibility = View.GONE
         }
-        binding.winnerPlayer.text =
-            getString(
-                R.string.player_s_is_the_winner,
-                viewModel.winnerPlayer.value.toString()
-            )
+
+        viewModel.eventPlayAgain.observe(viewLifecycleOwner, { play ->
+            if (play) {
+                NavHostFragment.findNavController(this)
+                    .navigate(WinFragmentDirections.actionWinFragmentToHomeFragment())
+                viewModel.onPlayAgainComplete()
+            }
+        })
 
         setHasOptionsMenu(true)
 
@@ -77,8 +89,4 @@ class WinFragment : Fragment() {
         return super.onOptionsItemSelected(item)
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        viewModel.clear()
-    }
 }
