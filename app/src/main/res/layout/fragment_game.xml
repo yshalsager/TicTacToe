@@ -3,6 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+
+        <variable
+            name="gameViewModel"
+            type="me.yshalsager.tictactoe.screens.game.GameViewModel" />
+    </data>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -19,7 +26,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_margin="48dp"
-                android:text="@string/it_s_player_s_turn"
+                android:text="@{@string/it_s_player_s_turn(gameViewModel.selectedPlayer)}"
                 android:textSize="24sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -48,76 +55,103 @@
             <Button
                 android:id="@+id/button0"
                 style="@style/Widget.TicTacToe.BoardButtonView"
+                android:onClick="@{(view) -> gameViewModel.play(view)}"
+                android:tag="0"
                 app:layout_constraintEnd_toStartOf="@+id/button1"
                 app:layout_constraintHorizontal_chainStyle="packed"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@id/play_board"
+                app:text="@{gameViewModel.playBoard[0]}"
                 tools:text="X" />
 
             <Button
                 android:id="@+id/button1"
                 style="@style/Widget.TicTacToe.BoardButtonView"
+                android:onClick="@{(view) -> gameViewModel.play(view)}"
+                android:tag="1"
                 app:layout_constraintEnd_toStartOf="@+id/button2"
                 app:layout_constraintStart_toEndOf="@+id/button0"
                 app:layout_constraintTop_toTopOf="@+id/play_board"
+                app:text="@{gameViewModel.playBoard[1]}"
                 tools:text="O" />
 
             <Button
                 android:id="@+id/button2"
                 style="@style/Widget.TicTacToe.BoardButtonView"
+                android:onClick="@{(view) -> gameViewModel.play(view)}"
+                android:tag="2"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/button1"
                 app:layout_constraintTop_toTopOf="@+id/play_board"
+                app:text="@{gameViewModel.playBoard[2]}"
                 tools:text="X" />
 
             <Button
                 android:id="@+id/button3"
                 style="@style/Widget.TicTacToe.BoardButtonView"
+                android:onClick="@{(view) -> gameViewModel.play(view)}"
+                android:tag="3"
                 app:layout_constraintEnd_toStartOf="@+id/button4"
                 app:layout_constraintHorizontal_chainStyle="packed"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/button1"
+                app:text="@{gameViewModel.playBoard[3]}"
                 tools:text="O" />
 
             <Button
                 android:id="@+id/button4"
                 style="@style/Widget.TicTacToe.BoardButtonView"
+                android:onClick="@{(view) -> gameViewModel.play(view)}"
+                android:tag="4"
                 app:layout_constraintEnd_toStartOf="@+id/button5"
                 app:layout_constraintStart_toEndOf="@+id/button3"
                 app:layout_constraintTop_toBottomOf="@+id/button1"
+                app:text="@{gameViewModel.playBoard[4]}"
                 tools:text="X" />
 
             <Button
                 android:id="@+id/button5"
                 style="@style/Widget.TicTacToe.BoardButtonView"
+                android:onClick="@{(view) -> gameViewModel.play(view)}"
+                android:tag="5"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/button4"
                 app:layout_constraintTop_toBottomOf="@+id/button1"
+                app:text="@{gameViewModel.playBoard[5]}"
                 tools:text="O" />
 
             <Button
                 android:id="@+id/button6"
                 style="@style/Widget.TicTacToe.BoardButtonView"
+                android:onClick="@{(view) -> gameViewModel.play(view)}"
+                android:tag="6"
                 app:layout_constraintEnd_toStartOf="@+id/button7"
                 app:layout_constraintHorizontal_chainStyle="packed"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/button4"
+                app:text="@{gameViewModel.playBoard[6]}"
                 tools:text="X" />
 
             <Button
                 android:id="@+id/button7"
                 style="@style/Widget.TicTacToe.BoardButtonView"
+                android:onClick="@{(view) -> gameViewModel.play(view)}"
+                android:tag="7"
                 app:layout_constraintEnd_toStartOf="@+id/button8"
                 app:layout_constraintStart_toEndOf="@+id/button6"
                 app:layout_constraintTop_toBottomOf="@+id/button4"
+                app:text="@{gameViewModel.playBoard[7]}"
                 tools:text="O" />
 
             <Button
                 android:id="@+id/button8"
                 style="@style/Widget.TicTacToe.BoardButtonView"
+                android:onClick="@{(view) -> gameViewModel.play(view)}"
+                android:tag="8"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/button7"
                 app:layout_constraintTop_toBottomOf="@+id/button4"
+                app:text="@{gameViewModel.playBoard[8]}"
                 tools:text="X" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

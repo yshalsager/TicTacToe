@@ -1,5 +1,6 @@
 package me.yshalsager.tictactoe.screens.game
 
+import android.view.View
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -17,6 +18,10 @@ class GameViewModel : ViewModel() {
     val playBoard: LiveData<ArrayList<String>>
         get() = _playBoard
 
+    private val _eventTurnFinish = MutableLiveData<Boolean>()
+    val eventTurnFinish: LiveData<Boolean>
+        get() = _eventTurnFinish
+
     private val _eventGameFinish = MutableLiveData<Boolean>()
     val eventGameFinish: LiveData<Boolean>
         get() = _eventGameFinish
@@ -27,6 +32,15 @@ class GameViewModel : ViewModel() {
         _winnerPlayer.value = null
         _playBoard.value = arrayListOf("", "", "", "", "", "", "", "", "")
         _eventGameFinish.value = false
+        _eventTurnFinish.value = true
+    }
+
+    fun play(view: View) {
+        val toPlay: String = if (selectedPlayer.value == 1) "X" else "O"
+        _playBoard.value?.set(view.tag.toString().toInt(), toPlay)
+        view.isClickable = false
+        swapPlayer()
+        _eventTurnFinish.value = false
     }
 
     private fun arrayItemsAreSame(array: List<String>): Boolean =
@@ -34,7 +48,7 @@ class GameViewModel : ViewModel() {
 
     private fun getPlayerNumberFromBoard(cell: String): Int = if (cell == "X") 1 else 2
 
-    fun swapPlayer() {
+    private fun swapPlayer() {
         _selectedPlayer.value = when (_selectedPlayer.value) {
             0 -> 1
             1 -> 2
@@ -97,11 +111,11 @@ class GameViewModel : ViewModel() {
 
     fun clear() = onCleared()
 
-    fun play(place: Int, piece: String) {
-        _playBoard.value?.set(place, piece)
-    }
-
     fun onGameFinishComplete() {
         _eventGameFinish.value = false
+    }
+
+    fun onTurnComplete() {
+        _eventTurnFinish.value = true
     }
 }
