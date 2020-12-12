@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    compileSdkVersion 29
+    compileSdkVersion 30
     buildToolsVersion "30.0.1"
 
     buildFeatures {
@@ -16,7 +16,7 @@ android {
     defaultConfig {
         applicationId "me.yshalsager.tictactoe"
         minSdkVersion 19
-        targetSdkVersion 29
+        targetSdkVersion 30
         versionCode 1
         versionName "1.0"
         vectorDrawables.useSupportLibrary = true
