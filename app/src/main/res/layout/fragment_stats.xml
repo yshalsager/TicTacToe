@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="statsViewModel"
+            type="me.yshalsager.tictactoe.screens.stats.StatsViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".screens.stats.statsFragment">
+
+
+        <TextView
+            android:id="@+id/x_games"
+            style="@style/Widget.TicTacToe.TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{@string/x_wins_count(statsViewModel.xWins)}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Total X wins: 10" />
+
+        <TextView
+            android:id="@+id/y_games"
+            style="@style/Widget.TicTacToe.TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{@string/y_wins_count(statsViewModel.yWins)}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/x_games"
+            tools:text="Total Y wins: 10" />
+
+        <TextView
+            android:id="@+id/draw_wins"
+            style="@style/Widget.TicTacToe.TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{@string/draw_count(statsViewModel.drawCount)}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/y_games"
+            tools:text="Total draw games: 10" />
+
+        <TextView
+            android:id="@+id/all_games"
+            style="@style/Widget.TicTacToe.TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{@string/total_played_games(statsViewModel.totalGamesCount)}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/draw_wins"
+            tools:text="Total played games: 10" />
+
+        <TextView
+            android:id="@+id/played_games"
+            style="@style/Widget.TicTacToe.TextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/played_games_details"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/all_games" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="320dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/played_games">
+
+            <TextView
+                android:id="@+id/games_details"
+                style="@style/Widget.TicTacToe.TextView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@{statsViewModel.games}"
+                tools:text="some long text\nsome long text\nsome long text\n" />
+
+        </ScrollView>
+
+        <Button
+            android:id="@+id/clear_all_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="32dp"
+            android:enabled="@{statsViewModel.clearButtonVisible}"
+            android:onClick="@{() -> statsViewModel.onClear()}"
+            android:text="@string/clear_all"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+        </Button>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -14,4 +14,13 @@
     <string name="next_turn">Next turn</string>
     <string name="it_s_player_s_turn">It\'s player %1$s turn!</string>
     <string name="it_s_a_draw">It\'s a draw!</string>
+    <string name="played_games_statistics">Played Games Statistics</string>
+    <string name="clear_all">Clear All</string>
+    <string name="total_played_games">Total played games: %1$s</string>
+    <string name="x_wins_count">Total X wins (Player 1): %1$s</string>
+    <string name="y_wins_count">Total Y wins (Player 2): %1$s</string>
+    <string name="draw_count">Total draw games: %1$s</string>
+    <string name="played_games_details">Played games details:</string>
+    <string name="statistics">Statistics</string>
+    <string name="cleared_message">All previous games has been deleted.</string>
 </resources>

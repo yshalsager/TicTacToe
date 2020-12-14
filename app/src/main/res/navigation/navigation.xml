@@ -79,4 +79,9 @@
             android:name="lastPlayer"
             app:argType="integer" />
     </fragment>
+    <fragment
+        android:id="@+id/statsFragment"
+        android:name="me.yshalsager.tictactoe.screens.stats.StatsFragment"
+        android:label="@string/played_games_statistics"
+        tools:layout="@layout/fragment_stats" />
 </navigation>

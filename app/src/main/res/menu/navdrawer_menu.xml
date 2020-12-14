@@ -4,4 +4,8 @@
         android:id="@+id/aboutFragment"
         android:icon="@drawable/about"
         android:title="@string/about" />
+    <item
+        android:id="@+id/statsFragment"
+        android:icon="@drawable/game"
+        android:title="@string/statistics" />
 </menu>

@@ -17,6 +17,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.navArgs
 import me.yshalsager.tictactoe.R
+import me.yshalsager.tictactoe.database.GameDatabase
 import me.yshalsager.tictactoe.databinding.FragmentWinBinding
 
 
@@ -35,7 +36,10 @@ class WinFragment : Fragment() {
         )
 
         val winFragmentArgs by navArgs<WinFragmentArgs>()
-        viewModelFactory = WinViewModelFactory(winFragmentArgs.winnerPlayer)
+        val application = requireNotNull(this.activity).application
+        val dataSource = GameDatabase.getInstance(application).sleepDatabaseDao
+        viewModelFactory =
+            WinViewModelFactory(winFragmentArgs.winnerPlayer, dataSource, application)
         viewModel = ViewModelProvider(this, viewModelFactory).get(WinViewModel::class.java)
 
         binding.winViewModel = viewModel
