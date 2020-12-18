@@ -33,6 +33,15 @@ class StatsFragment : Fragment() {
         binding.statsViewModel = viewModel
         binding.lifecycleOwner = this
 
+        val adapter = GameAdapter()
+        binding.gamesList.adapter = adapter
+
+        viewModel.games.observe(viewLifecycleOwner, {
+            it?.let {
+                adapter.submitList(it)
+            }
+        })
+
         viewModel.showSnackBarEvent.observe(viewLifecycleOwner, {
             if (it == true) {
                 Snackbar.make(

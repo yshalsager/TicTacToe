@@ -9,14 +9,10 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 import me.yshalsager.tictactoe.database.Game
 import me.yshalsager.tictactoe.database.GameDatabaseDao
-import me.yshalsager.tictactoe.utils.getGamesAsString
 
 class StatsViewModel(private val database: GameDatabaseDao, application: Application) :
     AndroidViewModel(application) {
-    private val _games: LiveData<List<Game>> = database.getAllGames()
-    val games = Transformations.map(_games) {
-        _games.value?.let { gamesList -> getGamesAsString(gamesList) }
-    }
+    val games: LiveData<List<Game>> = database.getAllGames()
     val xWins: LiveData<Int> = database.getXWinsCount()
     val yWins: LiveData<Int> = database.getYWinsCount()
     val drawCount: LiveData<Int> = database.getDrawCount()

@@ -4,15 +4,13 @@ import android.annotation.SuppressLint
 import me.yshalsager.tictactoe.database.Game
 import java.text.SimpleDateFormat
 
-fun getGamesAsString(games: List<Game>): String {
+fun getGamesAsString(game: Game): String {
     val gamesString = StringBuilder()
-    games.forEach { game ->
-        if (game.startTimeMilli != game.endTimeMilli) {
-            gamesString.append("Game ${game.gameId}\n")
-            gamesString.append("Started at: ${formatDateTime(game.startTimeMilli)}\n")
-            gamesString.append("Ended at: ${formatDateTime(game.endTimeMilli)}\n")
-            gamesString.append("Result: ${getWinnerFromID(game.winnerId)}\n\n")
-        }
+    if (game.startTimeMilli != game.endTimeMilli) {
+        gamesString.append("Game ${game.gameId}\n")
+        gamesString.append("Started at: ${formatDateTime(game.startTimeMilli)}\n")
+        gamesString.append("Ended at: ${formatDateTime(game.endTimeMilli)}\n")
+        gamesString.append("Result: ${getWinnerFromID(game.winnerId)}")
     }
     return gamesString.toString()
 }

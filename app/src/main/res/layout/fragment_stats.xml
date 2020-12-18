@@ -67,21 +67,15 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/all_games" />
 
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="320dp"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/games_list"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toTopOf="@id/clear_all_btn"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/played_games">
-
-            <TextView
-                android:id="@+id/games_details"
-                style="@style/Widget.TicTacToe.TextView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@{statsViewModel.games}"
-                tools:text="some long text\nsome long text\nsome long text\n" />
-
-        </ScrollView>
+            app:layout_constraintTop_toBottomOf="@id/played_games" />
 
         <Button
             android:id="@+id/clear_all_btn"
